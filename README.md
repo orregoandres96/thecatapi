@@ -1,5 +1,10 @@
 # thecatapi
 
+Desarrollado con
+
+1. JAVA 17
+2. Spring Boot 3.2.3
+
 Para ejecutar la API
 
 1. Clonar el repositorio
