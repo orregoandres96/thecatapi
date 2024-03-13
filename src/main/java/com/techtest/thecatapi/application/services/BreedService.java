@@ -15,8 +15,8 @@ public class BreedService implements IRetrieveBreedUseCase {
   }
 
   @Override
-  public List<Breed> getAllBreeds() {
-    return retrieveBreedUseCase.getAllBreeds();
+  public List<Breed> getAllBreeds(Long limit, Long page) {
+    return retrieveBreedUseCase.getAllBreeds(limit, page);
   }
 
   @Override

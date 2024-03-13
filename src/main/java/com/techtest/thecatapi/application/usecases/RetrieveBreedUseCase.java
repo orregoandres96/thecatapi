@@ -16,8 +16,8 @@ public class RetrieveBreedUseCase implements IRetrieveBreedUseCase {
   }
 
   @Override
-  public List<Breed> getAllBreeds() {
-    return theCatAPIServicePort.getAllBreeds();
+  public List<Breed> getAllBreeds(Long limit, Long page) {
+    return theCatAPIServicePort.getAllBreeds(limit, page);
   }
 
   @Override

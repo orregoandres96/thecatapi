@@ -23,8 +23,18 @@ public class TheCatAPIServiceAdapter implements ITheCatAPIServicePort {
   }
 
   @Override
-  public List<Breed> getAllBreeds() {
-    return getTheCatAPI(null, null);
+  public List<Breed> getAllBreeds(Long limit, Long page) {
+    QueryString qs = new QueryString();
+
+    if (limit != null) {
+      qs.add("limit", Long.toString(limit));
+    }
+
+    if (page != null) {
+      qs.add("page", Long.toString(page));
+    }
+
+    return getTheCatAPI(null, qs.toString());
   }
 
   @Override

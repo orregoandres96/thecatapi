@@ -44,7 +44,7 @@ public class RetrieveBreedUseCaseTest {
         ArgumentMatchers.<HttpEntity<String>>any(),
         ArgumentMatchers.<Class<Breed[]>>any())).thenReturn(breedsEntity);
 
-    List<Breed> breeds = retrieveBreedUseCase.getAllBreeds();
+    List<Breed> breeds = retrieveBreedUseCase.getAllBreeds(null, null);
     System.out.println(breeds);
 
     assertNotNull(breeds);

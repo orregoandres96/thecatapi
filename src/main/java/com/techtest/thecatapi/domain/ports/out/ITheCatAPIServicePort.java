@@ -7,7 +7,7 @@ import com.techtest.thecatapi.domain.models.Breed;
 
 public interface ITheCatAPIServicePort {
 
-  List<Breed> getAllBreeds();
+  List<Breed> getAllBreeds(Long limit, Long page);
 
   Optional<Breed> getBreedById(String id);
 

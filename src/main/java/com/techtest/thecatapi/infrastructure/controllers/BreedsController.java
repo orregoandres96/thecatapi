@@ -24,8 +24,9 @@ public class BreedsController {
   }
 
   @GetMapping
-  public ResponseEntity<List<Breed>> getAllBreeds() {
-    List<Breed> breeds = breedService.getAllBreeds();
+  public ResponseEntity<List<Breed>> getAllBreeds(@RequestParam(required = false) Long limit,
+      @RequestParam(required = false) Long page) {
+    List<Breed> breeds = breedService.getAllBreeds(limit, page);
     return new ResponseEntity<>(breeds, HttpStatus.OK);
   }
 
@@ -37,7 +38,7 @@ public class BreedsController {
   }
 
   @GetMapping("/search")
-  public ResponseEntity<List<Breed>> getBreedBySearch(@RequestParam(required = false) String q,
+  public ResponseEntity<List<Breed>> getBreedBySearch(@RequestParam(required = true) String q,
       @RequestParam(required = false) Long attach_image) {
     List<Breed> breeds = breedService.getBreedBySearch(q, attach_image);
     return new ResponseEntity<>(breeds, HttpStatus.OK);
