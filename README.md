@@ -1,25 +1,87 @@
-# thecatapi
+# TheCatApi
 
-Desarrollado con
+RESTful API project using [thecatapi.com](https://thecatapi.com/) as external service to implement /breeds.
 
-1. JAVA 17
-2. Spring Boot 3.2.3
+#### Technical Stack
 
-Para ejecutar la API
+- **Backend Framework:** Backend Framework: Spring Boot v3.2.3 (Java v17)
+- **External Service Integration:** TheCatAPI [thecatapi.com](https://thecatapi.com/)
+- **API Documentation:** Swagger/OpenAPI
 
-1. Clonar el repositorio
-2. Desde la consola de comandos dirijase al directorio raiz del proyecto
-3. Ejecute los siguientes comandos `$ ./mvnw clean package` `$ docker build -t thecatapi .` `$ docker run -p 8080:8080 thecatapi`
+## Table of Contents
 
-La aplicación se ejecuta en `localhost` por el puerto `8080`
+- [Deployment](#deployment)
+- [API Reference](#api-reference)
+  - [Get all breeds](#get-all-breeds)
+  - [Get breed](#get-breed)
+  - [Search breeds](#search-breeds)
 
-GET /breeds :
-`localhost:8080/api/v1/breeds`
+## Deployment
 
-GET /breeds/:breed_id :
-`localhost:8080/api/v1/breeds/abys`
+Clone the project
 
-GET /breeds/search :
-`localhost:8080/api/v1/breeds/search?q=colorpoint&attach_image=1`
+```bash
+  git clone https://github.com/orregoandres96/thecatapi.git
+```
 
-NOTA: Tambien tiene la opción de ejecutar el archivo run.sh `$ sh run.sh` que ya ejecuta todos los comandos mencionados en el punto 3
+Go to the project directory
+
+```bash
+  cd thecatapi
+```
+
+Install dependencies
+
+```
+  ./mvnw clean install
+```
+
+To deploy this project run the next commands in the project root directory
+
+```bash
+  ./mvnw clean package
+  docker build -t thecatapi .
+  docker run -p 8080:8080 thecatapi
+```
+
+or
+
+```
+  sh deploy.sh
+```
+
+## API Reference
+
+The server runs on [localhost:8080](http://localhost:8080/). check the [API Documentation](http://localhost:8080/api-doc/index.html)
+
+#### Get all breeds
+
+```http
+  GET /api/v1/breeds
+```
+
+| Parameter | Type     | Description   | Example  |
+| :-------- | :------- | :------------ | :------- |
+| `limit`   | `string` | **Optional**. | limit=10 |
+| `page`    | `string` | **Optional**. | page=0   |
+
+#### Get breed
+
+```http
+  GET /breeds/${breed_id}
+```
+
+| Parameter  | Type     | Description                        |
+| :--------- | :------- | :--------------------------------- |
+| `breed_id` | `string` | **Required**. Id of breed to fetch |
+
+#### Search breeds
+
+```http
+  GET /breeds/search?q=${breed_name}&attach_image=${1|0}
+```
+
+| Query Parameter | Type     | Description                                                         | Example        |
+| :-------------- | :------- | :------------------------------------------------------------------ | :------------- |
+| `q`             | `string` | **Required** search term for breed name                             | q=air          |
+| `attach_image`  | `string` | **Optional**. whether to attach the reference_image_id image or not | attach_image=1 |
