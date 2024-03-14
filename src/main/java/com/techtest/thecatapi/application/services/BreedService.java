@@ -3,9 +3,12 @@ package com.techtest.thecatapi.application.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.techtest.thecatapi.domain.models.Breed;
 import com.techtest.thecatapi.domain.ports.in.IRetrieveBreedUseCase;
 
+@Service
 public class BreedService implements IRetrieveBreedUseCase {
 
   private final IRetrieveBreedUseCase retrieveBreedUseCase;
